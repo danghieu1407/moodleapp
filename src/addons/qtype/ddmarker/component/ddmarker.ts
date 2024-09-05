@@ -78,6 +78,8 @@ export class AddonQtypeDdMarkerComponent
         }
         this.question.ddArea += ddForm.outerHTML;
         this.question.readOnly = false;
+        const dropzones: any = ddArea.querySelector('.dropzones');
+        const visibleDropzone: any = JSON.parse(dropzones.dataset.visibledDropzones);
 
         if (this.question.initObjects) {
             // Moodle version = 3.5.
@@ -101,8 +103,8 @@ export class AddonQtypeDdMarkerComponent
             }
             nextIndex++;
 
-            if (this.question.amdArgs[nextIndex] !== undefined) {
-                this.dropZones = <unknown[]> this.question.amdArgs[nextIndex];
+            if (visibleDropzone) {
+                this.dropZones = <unknown[]> visibleDropzone;
             }
         }
 

@@ -64,7 +64,8 @@ export class AddonQtypeDdImageOrTextComponent
         // Set the D&D area HTML.
         this.question.ddArea = ddArea.outerHTML;
         this.question.readOnly = false;
-
+        const dropzones: any = ddArea.querySelector('.dropzones');
+        const placeInfo: any = JSON.parse(dropzones.dataset.placeInfo);
         if (this.question.initObjects) {
             // Moodle version = 3.5.
             if (this.question.initObjects.drops !== undefined) {
@@ -78,8 +79,8 @@ export class AddonQtypeDdImageOrTextComponent
             if (this.question.amdArgs[1] !== undefined) {
                 this.question.readOnly = !!this.question.amdArgs[1];
             }
-            if (this.question.amdArgs[2] !== undefined) {
-                this.drops = <unknown[]> this.question.amdArgs[2];
+            if (placeInfo) {
+                this.drops = <unknown[]> placeInfo;
             }
         }
 
